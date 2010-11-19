@@ -1,0 +1,6 @@
+; $Id$
+name = Masked Input
+description = Help users to more easily enter fixed width input.
+core = 6.x
+version = "6"
+project = "other"
