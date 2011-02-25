@@ -1,5 +1,4 @@
 <?php
-// $Id$
   function maskedinput_uninstall() {
     variable_del('maskedinput_fields');
   }

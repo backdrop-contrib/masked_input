@@ -1,4 +1,3 @@
-// $Id$
 ﻿/// <reference path="../../../lib/jquery-1.2.6.js" />
 /*
 	Masked Input plugin for jQuery
