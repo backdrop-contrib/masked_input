@@ -3,7 +3,7 @@
   Drupal.behaviors.masked_input = {
 
     attach: function(context, settings) {
-      var config = settings.maskedinput;
+      var config = settings.masked_input;
 
       for (var element in config.elements) {
         $('#' + config.elements[element].id, context).once('masked_input', function(){

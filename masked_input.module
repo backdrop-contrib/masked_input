@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file
+ * @file masked_input.module
  *  Provides a form element, Field widget, and simple API for using the Masked
  * Input jQuery plugin.
  */
@@ -198,6 +198,7 @@ function masked_input_field_widget_settings_form($field, $instance) {
 
   $form['placeholder'] = array(
     '#type' => 'textfield',
+    '#size' => 1,
     '#title' => t('Placeholder'),
     '#description' => t('Optionally, if you are not satisfied with the underscore ("_") character as a placeholder, you may pass an optional argument to the masked_input method.'),
     '#default_value' => $settings['placeholder'],
