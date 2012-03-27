@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Install, uninstall, and requirements operations.
+ */
+
+/**
  * Implements hook_requirements().
  */
 function masked_input_requirements($phase) {

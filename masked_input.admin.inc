@@ -2,7 +2,7 @@
 
 /**
  * @file
- *   Provides the administrative UI.
+ * Provides the administrative UI.
  */
 
 /**
@@ -10,7 +10,7 @@
  */
 function masked_input_settings($form, &$form_state) {
   $form_state['values']['definitions'] = isset($form_state['values']['definitions']) ? $form_state['values']['definitions'] : variable_get('masked_input_definitions', array());
-  $form_state['masked_input']['count'] = isset($form_state['masked_input']['count']) ? $form_state['masked_input']['count'] : count($form_state['values']['definitions']);
+  $form_state['masked_input']['count'] = isset($form_state['masked_input']['count']) ? $form_state['masked_input']['count'] : count($form_state['values']['definitions']) + 1;
 
   $form['definition'] = array(
     '#type' => 'fieldset',
@@ -111,37 +111,4 @@ function _maskinput_definitions_element($delta = 'new', $definitions = array()) 
       '#default_value' => isset($definitions[$delta]['description']) ? $definitions[$delta]['description'] : '',
     ),
   );
-}
-
-
-
-/**
- * Theme callback: Masked Input Definitions settings
- * @see masked_input_settings()
- */
-function theme_masked_input_settings_definitions($variables) {
-  $form = $variables['form'];
-
-  // Hard-code default mask definitions because they come with the plugin.
-  $rows = _masked_input_default_definitions();
-
-  $header = array(
-    t('Character'),
-    t('Regular expression'),
-    t('Description'),
-  );
-
-  foreach (element_children($form) as $key) {
-    $delete_key = $key . '_delete';
-    $column = array();
-    $column[] = array('data' => drupal_render($form[$key]['character']));
-    $column[] = array('data' => drupal_render($form[$key]['regex']));
-    $column[] = array('data' => drupal_render($form[$key]['description']));
-    $rows[] = $column;
-  }
-
-  $output = theme('table', array('header' => $header, 'rows' => $rows));
-  $output .= drupal_render_children($form);
-
-  return $output;
 }

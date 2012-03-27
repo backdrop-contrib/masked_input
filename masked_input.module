@@ -1,8 +1,8 @@
 <?php
 
 /**
- * @file masked_input.module
- *  Provides a form element, Field widget, and simple API for using the Masked
+ * @file
+ * Provides a form element, Field widget, and simple API for using the Masked
  * Input jQuery plugin.
  */
 
@@ -30,7 +30,7 @@ function masked_input_theme($existing, $type, $theme, $path) {
   return array(
     'masked_input_settings_definitions' => array(
       'render element' => 'form',
-      'file' => 'masked_input.admin.inc',
+      'file' => 'masked_input.theme.inc',
     ),
   );
 }
