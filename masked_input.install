@@ -10,7 +10,7 @@
  */
 function masked_input_requirements($phase) {
   module_load_include('module', 'libraries');
-  $available = libraries_get_path('masked_input');
+  $available = libraries_get_path('maskedinput');
 
   return array(
     'masked_input_library' => array(
