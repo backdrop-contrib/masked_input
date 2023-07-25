@@ -9,7 +9,8 @@
  * Form builder: Masked Input settings
  */
 function masked_input_settings($form, &$form_state) {
-  $form_state['values']['definitions'] = isset($form_state['values']['definitions']) ? $form_state['values']['definitions'] : variable_get('masked_input_definitions', array());
+  $form['#config'] = 'masked_input.settings';
+  $form_state['values']['definitions'] = isset($form_state['values']['definitions']) ? $form_state['values']['definitions'] : config_get('masked_input.settings', 'input_definitions');
   $form_state['masked_input']['count'] = isset($form_state['masked_input']['count']) ? $form_state['masked_input']['count'] : count($form_state['values']['definitions']) + 1;
 
   $form['definition'] = array(
@@ -46,7 +47,6 @@ function masked_input_settings($form, &$form_state) {
   return $form;
 }
 
-
 /**
  * Validation callback: remove invalid definitions.
  * @see masked_input_settings()
@@ -59,15 +59,13 @@ function masked_input_settings_validate($form, &$form_state) {
   }
 }
 
-
 /**
  * Submission callback: save configurations to variables table.
  * @see masked_input_settings()
  */
 function masked_input_settings_submit($form, &$form_state) {
-  variable_set('masked_input_definitions', $form_state['values']['definitions']);
+  config_set('masked_input.settings', 'input_definitions', $form_state['values']['definitions']);
 }
-
 
 /**
  * Ajax callback: return definitions element.
@@ -76,7 +74,6 @@ function masked_input_settings_submit($form, &$form_state) {
 function _masked_input_definitions_add_another_callback($form, $form_state) {
   return $form['definition']['definitions'];
 }
-
 
 /**
  * Ajax submission callback: adds another definition form element.
@@ -87,7 +84,6 @@ function _masked_input_definitions_add_another_submit(&$form, &$form_state) {
   $form_state['rebuild'] = TRUE;
   $form['definition']['definitions'][] = _maskinput_definitions_element();
 }
-
 
 /**
  * Helper function: builds masked input definition form element.
@@ -104,10 +100,12 @@ function _maskinput_definitions_element($delta = 'new', $definitions = array()) 
     ),
     'regex' => array(
       '#type' => 'textfield',
+      '#size' => 30,
       '#default_value' => isset($definitions[$delta]['regex']) ? $definitions[$delta]['regex'] : '',
     ),
     'description' => array(
       '#type' => 'textfield',
+      '#size' => 40,
       '#default_value' => isset($definitions[$delta]['description']) ? $definitions[$delta]['description'] : '',
     ),
   );

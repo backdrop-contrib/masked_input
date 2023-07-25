@@ -22,16 +22,15 @@ function theme_masked_input_settings_definitions($variables) {
   );
 
   foreach (element_children($form) as $key) {
-    $delete_key = $key . '_delete';
     $column = array();
-    $column[] = array('data' => drupal_render($form[$key]['character']));
-    $column[] = array('data' => drupal_render($form[$key]['regex']));
-    $column[] = array('data' => drupal_render($form[$key]['description']));
+    $column[] = array('data' => backdrop_render($form[$key]['character']));
+    $column[] = array('data' => backdrop_render($form[$key]['regex']));
+    $column[] = array('data' => backdrop_render($form[$key]['description']));
     $rows[] = $column;
   }
 
   $output = theme('table', array('header' => $header, 'rows' => $rows));
-  $output .= drupal_render_children($form);
+  $output .= backdrop_render_children($form);
 
   return $output;
 }

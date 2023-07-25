@@ -1,6 +1,6 @@
 (function($) {
 
-  Drupal.behaviors.masked_input = {
+  Backdrop.behaviors.masked_input = {
 
     attach: function(context, settings) {
       var config = settings.masked_input;
@@ -19,7 +19,7 @@
             if (config.elements[element].mask.length) {
               $(this).mask(config.elements[element].mask, {
                 placeholder: config.elements[element].placeholder,
-                completed: Drupal.behaviors.masked_input.completedCallback
+                completed: Backdrop.behaviors.masked_input.completedCallback
               });
             }
           });
